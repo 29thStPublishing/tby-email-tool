@@ -39,21 +39,16 @@ export default class Users extends React.Component {
 
     return usersList;
   }
-  componentWillMount() {
-    fetch('data.json')
-      .then(resp => {
-        let data = this.sortDataByDate(resp);
-        this.setState({data: data});
-      })
-  }
   render() {
     return(
       <div>
-        <ul>
-          {this.state.data.map((user, i) => {
-            return <User key={i} user={user}/>;
-          })}
-        </ul>
+        <fieldset>
+          <ul>
+            {this.state.data.map((user, i) => {
+              return <User key={i} user={user} updateUser={this.handleUserUpdate} />;
+            })}
+          </ul>
+        </fieldset>
       </div>
     );
   }
