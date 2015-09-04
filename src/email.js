@@ -8,10 +8,8 @@ export default class Email extends React.Component {
     this.state = {text: ''};
   }
   handleChange(event) {
+    this.setState({text: event.target.value});
     localForage.setItem('emailText', event.target.value)
-      .then(resp => {
-        this.setState({text: resp});
-      })
       .catch(err => {
         console.error(err);
       })

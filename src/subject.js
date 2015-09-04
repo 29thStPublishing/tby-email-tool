@@ -8,10 +8,8 @@ export default class EmailSubject extends React.Component {
     this.state = {text: ''};
   }
   handleChange(event) {
+    this.setState({text: event.target.value});
     localForage.setItem('emailSubject', event.target.value)
-      .then(resp => {
-        this.setState({text: resp});
-      })
       .catch(err => {
         console.error(err);
       })
@@ -31,9 +29,9 @@ export default class EmailSubject extends React.Component {
   }
   render() {
     return (
-      <div>
-        <label htmlFor="emailSubject">Subject</label>
-        <input type="text"
+      <div className="single-line">
+        <label className="single-line__label" htmlFor="emailSubject">Subject</label>
+        <input className="single-line__input" type="text"
           id="emailSubject" 
           value={this.state.text}
           onChange={this.handleChange} 
