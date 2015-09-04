@@ -15,12 +15,23 @@ function compare(a, b) {
 export default class Users extends React.Component {
   constructor() {
     super();
-    this.state = {data: []};
+    this.handleUserUpdate = this.handleUserUpdate.bind(this);
+    this.state = {data: this.sortDataByDate(userData)};
+  }
+  handleUserUpdate(email) {
+    var newState = this.state.data.map(user => {
+      if (user.email === email) {
+        user.checked = !user.checked;
+      }
+      return user;
+    });
+
+    this.setState({data: newState});
   }
   sortDataByDate(data) {
     var usersList = Object.keys(data).map(email => {
       if (data[email].length) {
-        return {email, expirationDate: new Date(data[email])};
+        return {email, expirationDate: new Date(data[email]), checked: false};
       }
     }).filter(user => {
       return user;
