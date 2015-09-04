@@ -31,10 +31,13 @@ export default class Email extends React.Component {
   }
   render() {
     return (
-      <textarea 
-        value={this.state.text}
-        onChange={this.handleChange}
-        rows="10" cols="100" />
+      <div>
+        <label htmlFor="emailText">Email Body</label>
+        <textarea 
+          id="emailText"
+          value={this.state.text}
+          onChange={this.handleChange} />
+      </div>
     );
   }
 }
