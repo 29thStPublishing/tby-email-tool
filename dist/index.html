@@ -46,13 +46,13 @@
       text-align: center;
       text-decoration: none;
     }
-    .popup {display: none;}
+    .popup {display: none; z-index: 100;}
     .popped {
-      background: rgba(255, 255, 255, .5);
+      background: rgba(255, 255, 255, .6);
       display: flex;
       align-items: center;
       justify-content: center;
-      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
     }
     .popup__modal {
       background: white;
