@@ -1,6 +1,6 @@
 import React from 'react';
-import fetch from './fetch';
 import User from './user';
+import userData from './data';
 
 function compare(a, b) {
   if (a.expirationDate < b.expirationDate) {
