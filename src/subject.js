@@ -34,7 +34,8 @@ export default class EmailSubject extends React.Component {
         <input className="single-line__input" type="text"
           id="emailSubject" 
           value={this.state.text}
-          onChange={this.handleChange} 
+          onChange={this.handleChange}
+          placeholder="Your email subject" 
           required/>
       </div>
     );

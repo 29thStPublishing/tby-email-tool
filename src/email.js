@@ -29,12 +29,14 @@ export default class Email extends React.Component {
   }
   render() {
     return (
-      <div>
-        <label htmlFor="emailText">Email Body</label>
+      <div className="single-line">
+        <label className="single-line__label" htmlFor="emailText">Email Body</label>
         <textarea 
+          className="email-input"
           id="emailText"
           value={this.state.text}
           onChange={this.handleChange} 
+          placeholder="Your message to your subscribers"
           required/>
       </div>
     );

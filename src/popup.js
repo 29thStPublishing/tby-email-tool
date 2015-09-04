@@ -11,13 +11,15 @@ export default class Popup extends React.Component {
     this.props.closePopup();
   }
   render() {
-    var classes = classNames('popup-modal', {
+    var classes = classNames('popup', {
       popped: this.props.isPopped,
     });
     return (
       <div className={classes}>
-        <a onClick={this.closePopup} href="#">x</a>
-        <span dangerouslySetInnerHTML={{__html: this.props.text}}></span>
+        <div className="popup__modal">
+          <a className="close-popup" onClick={this.closePopup} href="#"><img src="close.svg" /></a>
+          <span dangerouslySetInnerHTML={{__html: this.props.text}} />
+        </div>
       </div>
     );
   }

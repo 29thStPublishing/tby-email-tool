@@ -31,7 +31,7 @@ export default class Users extends React.Component {
   sortDataByDate(data) {
     var usersList = Object.keys(data).map(email => {
       if (data[email].length) {
-        return {email, expirationDate: new Date(data[email]), checked: false};
+        return {email, expirationDate: new Date(data[email].split(' ')[0]), checked: false};
       }
     }).filter(user => {
       return user;
@@ -41,14 +41,17 @@ export default class Users extends React.Component {
   }
   render() {
     return(
-      <div>
-        <fieldset>
-          <ul>
-            {this.state.data.map((user, i) => {
-              return <User key={i} user={user} updateUser={this.handleUserUpdate} />;
-            })}
-          </ul>
-        </fieldset>
+      <div className="single-line">
+        <label className="single-line__label">To</label>
+        <ul className="users-list">
+          {this.state.data.map((user, i) => {
+            return <User key={i} user={user} updateUser={this.handleUserUpdate} />;
+          })}
+        </ul>
+        <div className="legend">
+          <span className="expired">• Expired</span>
+          <span className="upcoming">• Expires within 30 days</span>
+        </div>
       </div>
     );
   }

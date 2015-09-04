@@ -35,6 +35,7 @@ export default class FromEmail extends React.Component {
           id="fromEmail" 
           value={this.state.email}
           onChange={this.handleChange} 
+          placeholder="Your email address"
           required/>
       </div>
     );

@@ -3,6 +3,7 @@ import Users from './users';
 import Email from './email';
 import APIKey from './apikey';
 import FromEmail from './fromemail';
+import FromName from './fromname';
 import EmailSubject from './subject';
 import Popup from './popup';
 import fetch from './fetch';
@@ -29,6 +30,7 @@ class App extends React.Component {
       .filter(user => user.checked)
       .map(user => {return {email: user.email}});
     var fromEmail = this.refs.fromEmail.state.email;
+    var fromName = this.refs.fromName.state.name;
     var apiKey = this.refs.apiKey.state.key;
     var madrillUrl = `https://mandrillapp.com/api/1.0/messages/send.json`;
     var body = {
@@ -37,6 +39,7 @@ class App extends React.Component {
         subject: emailSubject,
         text: emailText,
         from_email: fromEmail,
+        from_name: fromName,
         to: emailAddresses
       }
     }
@@ -59,18 +62,20 @@ class App extends React.Component {
   }
   render() {
     return(
-      <div>
+      <div className="the-app">
+        <h1>Tugboat Subscribers Email Tool</h1>
         <Popup 
           isPopped={this.state.popup}
           text={this.state.popupText}
           closePopup={this.closePopup}/>
         <form onSubmit={this.handleSubmit}>
           <FromEmail ref="fromEmail" />
+          <FromName ref="fromName" />
           <APIKey ref="apiKey" helpPopup={this.helpPopup} />
           <EmailSubject ref="emailSubject" />
           <Email ref="emailText" />
           <Users ref="users" />
-          <button type="submit">Send Email</button>
+          <button className="send-mail" type="submit">Send Email</button>
         </form>
       </div>
     );
