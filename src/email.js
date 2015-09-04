@@ -12,6 +12,9 @@ export default class Email extends React.Component {
       .then(resp => {
         this.setState({text: resp});
       })
+      .catch(err => {
+        console.error(err);
+      })
       .done();
   }
   componentWillMount() {
