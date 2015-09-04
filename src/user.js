@@ -7,7 +7,7 @@ export default class User extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick(event) {
-    console.log(this.props.user.email);
+    this.props.updateUser(this.props.user.email);
   }
   render() {
     var user = this.props.user;
@@ -19,11 +19,12 @@ export default class User extends React.Component {
       upcoming: diffDays <= 30
     });
 
-    console.log(this.props.email)
-
     return (
-      <li className={classes} onClick={this.handleClick}>
-        {user.email}: {user.expirationDate.toLocaleDateString()}
+      <li className={classes}>
+        <input id={user.email} onChange={this.handleClick} type="checkbox" checked={user.checked}/>
+        <label htmlFor={user.email}>
+          {user.email}: {user.expirationDate.toLocaleDateString()}
+        </label>
       </li>
     );
   }
