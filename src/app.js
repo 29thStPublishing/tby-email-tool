@@ -4,12 +4,22 @@ import Email from './email';
 import APIKey from './apikey';
 import FromEmail from './fromemail';
 import EmailSubject from './subject';
+import Popup from './popup';
 import fetch from './fetch';
 
 class App extends React.Component {
   constructor() {
     super();
+    this.state = {popup: false, popupText: ''};
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.helpPopup = this.helpPopup.bind(this);
+    this.closePopup = this.closePopup.bind(this);
+  }
+  helpPopup(text) {
+    this.setState({popup: true, popupText: text});
+  }
+  closePopup() {
+    this.setState({popup: false, popupText: ''});
   }
   handleSubmit(event) {
     event.preventDefault();
@@ -50,13 +60,17 @@ class App extends React.Component {
   render() {
     return(
       <div>
+        <Popup 
+          isPopped={this.state.popup}
+          text={this.state.popupText}
+          closePopup={this.closePopup}/>
         <form onSubmit={this.handleSubmit}>
           <FromEmail ref="fromEmail" />
-          <APIKey ref="apiKey" />
+          <APIKey ref="apiKey" helpPopup={this.helpPopup} />
           <EmailSubject ref="emailSubject" />
           <Email ref="emailText" />
           <Users ref="users" />
-          <button type="submit">Generate Email</button>
+          <button type="submit">Send Email</button>
         </form>
       </div>
     );
