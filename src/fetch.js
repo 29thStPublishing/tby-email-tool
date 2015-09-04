@@ -13,8 +13,6 @@ export default function fetch(url, options) {
     , type = 'json'
     , headers = {}
     , options = options || {}
-    , user = ''
-    , pw = ''
     ;
   // If the method in options is post or patch, use post or patch
   if (options.method && options.method.toLowerCase() === 'post') {
@@ -31,15 +29,10 @@ export default function fetch(url, options) {
   if (options.headers) {
     headers = options.headers;
   }
-  if (options.auth) {
-    user = options.auth.username;
-    pw = options.auth.password;
-  }
 
   return new Promise((resolve, reject) => {
     method(url)
       .type(type)
-      .auth(user, pw)
       .set(headers)
       .send(options.body)
       .end((err, res) => {

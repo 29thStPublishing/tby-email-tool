@@ -36,7 +36,8 @@ export default class Email extends React.Component {
         <textarea 
           id="emailText"
           value={this.state.text}
-          onChange={this.handleChange} />
+          onChange={this.handleChange} 
+          required/>
       </div>
     );
   }
